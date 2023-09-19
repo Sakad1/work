@@ -63,13 +63,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Login</a>
+                            <a class="nav-link active" aria-current="page" href="/work">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/workedhours">My Record</a>
+                            <a class="nav-link active" aria-current="page" href="/work/workedhours">My Record</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/signup">SignUp</a>
+                            <a class="nav-link" href="/work/signup">SignUp</a>
                         </li>
                     </ul>
                 </div>
@@ -124,17 +124,17 @@
             localStorage.removeItem('userToken'); // Replace 'userToken' with the actual session data key
 
             // Redirect to the login page
-            window.location.href = '/'; // Change '/login' to the actual login page URL
+            window.location.href = '/work'; // Change '/login' to the actual login page URL
         });
         document.getElementById('logout').addEventListener('click', () => {
-    fetch('/logout', {
+    fetch('/work/logout', {
         method: 'POST',
     })
     .then(response => {
         if (response.status === 200) {
             console.log('Logged out successfully');
             // Redirect to the login page
-            window.location.href = '/'; // Change to the actual login page URL
+            window.location.href = '/work'; // Change to the actual login page URL
         } else {
             console.error('Error logging out');
         }
