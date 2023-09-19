@@ -35,7 +35,7 @@ app.get('/signup', (req, res) => {
 });
 // GET route for the login page
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/login.html');
+    res.sendFile(__dirname + '/index.html');
 });
 // POST route for handling signup
 app.post('/signup', (req, res) => {
