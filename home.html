@@ -84,7 +84,7 @@
         <button id="logout" class="btn btn-secondary">Logout</button>
         
         <h2>Add Worked Hours</h2>
-        <form id="addHoursForm" action="/addhours" method="POST">
+        <form id="addHoursForm" action="/work/addhours" method="POST">
             <!-- Add a CSRF token field for security -->
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="form-group">
