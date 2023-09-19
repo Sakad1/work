@@ -30,7 +30,7 @@ app.use(session({
     saveUninitialized: false,
 }));
 // GET route for the login page
-app.get('/signup', (req, res) => {
+app.get('work/signup', (req, res) => {
     res.sendFile(__dirname + '/signup.html');
 });
 // GET route for the login page
@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 // POST route for handling signup
-app.post('/signup', (req, res) => {
+app.post('work/signup', (req, res) => {
     const { username, email, password } = req.body;
 
     // Check if the user already exists
@@ -99,7 +99,7 @@ app.post('/', (req, res) => {
                 if (user.password === password) {
                     // Password matches, set the user ID in the session
                     req.session.userId = user.id;
-                    res.redirect('/home'); // Redirect to the home page after successful login
+                    res.redirect('work/home'); // Redirect to the home page after successful login
                 } else {
                     // Password does not match
                     res.status(401).send('Invalid email or password');
@@ -113,7 +113,7 @@ app.post('/', (req, res) => {
 });
 
 // GET route for the home page
-app.get('/home', (req, res) => {
+app.get('work/home', (req, res) => {
     if (!req.session.userId) {
         return res.redirect('/');
     }
@@ -123,7 +123,7 @@ app.get('/home', (req, res) => {
 
 
 // POST route for handling logout
-app.post('/logout', (req, res) => {
+app.post('work/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             console.error(err);
@@ -138,7 +138,7 @@ app.post('/logout', (req, res) => {
 
 
 // POST route for handling the form submission to add worked hours
-app.post('/addhours', (req, res) => {
+app.post('work/addhours', (req, res) => {
     const userId = req.session.userId;
     const { hoursWorked } = req.body;
 
@@ -159,14 +159,14 @@ app.post('/addhours', (req, res) => {
             console.error(insertErr);
             res.status(500).send('Error adding worked hours');
         } else {
-            res.redirect('/home')
+            res.redirect('work/home')
            
         }
     });
 });
 
 // GET route to display worked hours for a specific user
-app.get('/workedhours', (req, res) => {
+app.get('work/workedhours', (req, res) => {
     const userId = req.session.userId;
 
     // Check if the user is logged in
@@ -233,7 +233,7 @@ app.get('/workedhours', (req, res) => {
                             ${rows.join('')}
                         </tbody>
                     </table>
-                    <a href="/home">Back to Homepage</a>
+                    <a href="work/home">Back to Homepage</a>
                 </body>
                 </html>
             `;
